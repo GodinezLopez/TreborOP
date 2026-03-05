@@ -92,16 +92,43 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 });
 
-if(window.twttr&&window.twttr.ready){
-       window.twttr.ready(function(twttr){
-           twttr.events.bind("rendered",function(event){
-               var container=event.target.closest(".tweet-container");
-               if(container){
-                   var loader=container.querySelector(".tweet-loader");
-                   var content=container.querySelector(".tweet-content");
-                   if(loader)loader.style.display="none";
-                   if(content)content.style.opacity="1";
-               }
-           });
-       });
-   }
+function initTweetLoader() {
+
+  if (!window.twttr || !window.twttr.ready) return;
+
+  window.twttr.ready(function (twttr) {
+
+    function revealTweet(container) {
+      const loader = container.querySelector(".tweet-loader");
+      const content = container.querySelector(".tweet-content");
+
+      if (loader) loader.style.display = "none";
+      if (content) content.style.opacity = "1";
+    }
+    twttr.events.bind("rendered", function (event) {
+      const container = event.target.closest(".tweet-container");
+      if (container) revealTweet(container);
+    });
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+
+          if (node.tagName === "IFRAME" && node.src.includes("twitter")) {
+            const container = node.closest(".tweet-container");
+            if (container) revealTweet(container);
+          }
+
+        });
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+  });
+
+}
+
+document.addEventListener("DOMContentLoaded", initTweetLoader);
