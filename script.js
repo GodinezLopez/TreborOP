@@ -87,22 +87,21 @@ document.addEventListener("DOMContentLoaded",function(){
         },{threshold:0.2});
         footerObserver.observe(footer);
     }
-
-    if(window.twttr&&window.twttr.ready){
-        window.twttr.ready(function(twttr){
-            twttr.events.bind("rendered",function(event){
-                var container=event.target.closest(".tweet-container");
-                if(container){
-                    var loader=container.querySelector(".tweet-loader");
-                    var content=container.querySelector(".tweet-content");
-                    if(loader)loader.style.display="none";
-                    if(content)content.style.opacity="1";
-                }
-            });
-        });
-    }
-
     document.addEventListener("contextmenu",function(e){
         e.preventDefault();
     });
 });
+
+if(window.twttr&&window.twttr.ready){
+       window.twttr.ready(function(twttr){
+           twttr.events.bind("rendered",function(event){
+               var container=event.target.closest(".tweet-container");
+               if(container){
+                   var loader=container.querySelector(".tweet-loader");
+                   var content=container.querySelector(".tweet-content");
+                   if(loader)loader.style.display="none";
+                   if(content)content.style.opacity="1";
+               }
+           });
+       });
+   }
