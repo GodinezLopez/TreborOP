@@ -92,7 +92,6 @@ img,video{
 }
 
 .section{
-    min-height:auto;
     display:flex;
     align-items:center;
     padding:60px 5%;
@@ -313,7 +312,6 @@ img,video{
     .container,
     .container.reverse{
         flex-direction:column;
-        gap:30px;
     }
 
     .image,
@@ -323,7 +321,12 @@ img,video{
     }
 
     .image{
+        display: flex;
+        margin: 0px 0px 50px;
         transform:translateY(60px) !important;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
     }
 
     .container.reverse .image{
@@ -340,14 +343,17 @@ img,video{
 
     .text h2{
         text-align:center;
+        font-size: 3rem;
     }
 
     .text p{
         text-align:center;
+        font-size: 1.5rem;
     }
 
     .image img{
         border-radius:15px;
+        width: 90%;
     }
 
     .grid{
@@ -375,8 +381,14 @@ img,video{
         gap:20px;
     }
 
+    .text h2{
+        text-align:center;
+        font-size: 2.2rem;
+    }
+
     .text p{
-        font-size:0.9rem;
+        text-align:center;
+        font-size: 1rem;
     }
 
     .gallery{
