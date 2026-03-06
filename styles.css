@@ -305,6 +305,10 @@ img,video{
 }
 
 @media(max-width:900px){
+    html,body{
+        overflow-x:hidden;
+        width:100%;
+    }
     .section{
         padding:40px 5%;
     }
@@ -325,8 +329,6 @@ img,video{
         margin: 0px 0px 50px;
         transform:translateY(60px) !important;
         justify-content: center;
-        text-align: center;
-        align-items: center;
     }
 
     .container.reverse .image{
@@ -364,9 +366,16 @@ img,video{
     .video-js{
         max-width:100%;
     }
+    .tweet-container{
+        width: 90%;
+    }
 }
 
 @media(max-width:500px){
+    html,body{
+        overflow-x:hidden;
+        width:100%;
+    }
     .hero{
         min-height:400px;
         padding:15px;
